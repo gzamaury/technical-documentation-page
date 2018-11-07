@@ -1,0 +1,118 @@
+/* 
+    Created on : 31/10/2018, 10:09:45 PM
+    Author     : gzamaury
+*/
+
+body {
+    margin: 0;
+    background-color: rgb(43,62,87);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.nav-left {
+    display: grid;
+    grid-template-columns: 21vw auto;
+}
+
+#navbar {
+    position: sticky;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+#nav-header {
+    font-size: 5vh;
+}
+
+#nav-div-links {
+    overflow-y: scroll;
+    height: 75vh;
+}
+
+.nav-link {
+    display: block;
+    padding: 1vw 1vw 1vw 1vw;
+}
+
+a {
+    color: rgba(111, 184, 218, 0.85);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+}
+
+a:hover {
+    color: rgba(111, 184, 218, 0.65);
+}
+
+header {
+    padding: 1vw 1vw 1vw 1vw;
+    font-size: x-large;
+    font-family: 'Francois One', sans-serif;
+}
+
+section header {
+    padding-left: 2vw;
+    margin-top: 3vw;
+}
+
+p {
+    text-align: justify;
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+.code-block {
+    margin-left: 6vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    background-color: rgb(30,30,30);
+    font-family: 'Rokkitt', serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: auto;
+    max-width: 65vw;
+    padding: 2vw 1vw;
+}
+
+#main-doc {
+    padding: 1vw 2vw 1vw 2vw;
+}
+
+.main-section {
+
+}
+
+.high-risk {
+    color: rgba(255, 0, 0, 0.85);
+}
+
+@media (max-width:800px)
+{
+    .nav-left {
+        display: initial;
+    }
+
+    #navbar {
+        position: initial;
+        height: auto;
+    }
+    
+    #nav-div-links {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .nav-link {
+        padding-left: 6vw;
+    }
+
+    img {
+        max-width: 92vw;
+    }
+}

@@ -1,0 +1,36 @@
+/* 
+    Created on : 31/10/2018, 10:09:45 PM
+    Author     : gzamaury
+*/
+
+body {
+    margin: 2vw;
+    background-color: rgb(43,62,87);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+header {
+    padding: 1vw 1vw 1vw 1vw;
+    font-size: x-large;
+}
+
+section header {
+    padding-left: 2vw;
+    margin-top: 3vw;
+}
+
+p {
+    text-align: justify;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+@media (max-width:800px)
+{
+    img {
+        max-width: 95vw;
+    }
+}

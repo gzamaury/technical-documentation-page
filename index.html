@@ -1,1 +1,205 @@
-<h1>Setting Up an FTP Server on Mac OS X</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+
+        <title>Setting Up an FTP Server on Mac OS X</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption|Francois+One|Rokkitt|Oswald" rel="stylesheet">
+    </head>
+    <body class="nav-left">
+        <nav id="navbar">
+            <header id="nav-header" class="text-center">
+                Setting Up an FTP Server on Mac OS X
+            </header>
+            <div id="nav-div-links">
+                <a class="nav-link" href="#How_to_config_an_FTP_Server_on_the_newest_Mac_OS_X_versions">
+                    How to config an FTP Server on the newest Mac OS X versions
+                </a>
+                <a class="nav-link" href="#1.-_Verifying_or_installing_Java">
+                    1.- Verifying or installing Java
+                </a>
+                <a class="nav-link" href="#2.-_Downloading_and_Running_the_Ftp_Server">
+                    2.- Downloading and Running the Ftp Server
+                </a>
+                <a class="nav-link" href="#3.-_Test_your_Server_with_an_FTP_client">
+                    3.- Test your Server with an FTP client
+                </a>
+                <a class="nav-link" href="#4.-_Changing_the_pre-configurated_user,_password,_home_folder,_etc">
+                    4.- Changing the pre-configurated user, password, home folder, etc
+                </a>
+                <a class="nav-link" href="#5.-_Adding_Users">
+                    5.- Adding Users
+                </a>
+                <a class="nav-link" href="#6.-_Running_the_FTP_Server_on_login">
+                    6.- Running the FTP Server on login
+                </a>
+            </div>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="How_to_config_an_FTP_Server_on_the_newest_Mac_OS_X_versions">
+                <header>
+                    How to config an FTP Server on the newest Mac OS X versions
+                </header>
+                <p>
+                    The latest versions of Mac OS X have removed their FTP functionality, 
+                    so we are going to config a Java FTP Server to make available this 
+                    feature again.
+                </p>
+
+                <div>
+                    <h3>Requirements:</h3>
+                    <ul>
+                        <li>Java</li>
+                        <li>Apache Ftp Server</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <h2>Procedure:</h2>
+
+            <section class="main-section" id="1.-_Verifying_or_installing_Java">
+                <header>
+                    1.- Verifying or installing Java
+                </header>
+                <p>
+                    To verify if Java is available, open a Terminal and Type:
+                </p>
+                <code class="code-block">
+                    java --version
+                </code>
+                <p>
+                    If Java is not available, pops up a message that offers to visit 
+                    the Java download website. You must download the jdk-XX-X-X_osx-x64_bin.dmg, 
+                    install it and try the command again. You should see the Java version 
+                    that you installed.
+                </p>
+                <img src="img/java-installed.png" alt="The otcome of java --version command, 
+                     It shows the version installed"/>
+            </section>
+
+            <section class="main-section" id="2.-_Downloading_and_Running_the_Ftp_Server">
+
+                <header>
+                    2.- Downloading and Running the Ftp Server
+                </header>
+                <p>
+                    Now, we need to download this zip package - <a href="file/javaftp.zip" download>javaftp.zip</a> - that 
+
+                    contains the FTP server with pre-configured files.
+                </p>
+                <p>
+                    The next command uncompresses the package, moves the javaftp 
+                    folder to the <code>{your-user}/Library folder</code>, adds execution 
+                    permissions and finally runs the Java FTP Server for the first time. 
+                    Copy the command to the Terminal:
+                </p>
+                <code class="code-block">
+                    cd ~/Downloads && unzip javaftp.zip && mv javaftp ~/Library && chmod 744 ~/Library/javaftp/apache-ftpserver-1.1.1/bin/ftpd.sh && chmod 744 ~/Library/javaftp/addUser.sh && mkdir ~/Desktop/JAVA-FTP && cd ~/Library/javaftp/apache-ftpserver-1.1.1 && bin/ftpd.sh res/conf/my-ftpd-typical.xml
+                </code>
+                <p>
+                    You will see the message "FtpServer started".
+                </p>
+                <img src="img/first-start.png" alt="The outcome of the first startup"/>
+                <p>
+                    Note: If something went wrong you can use the next command to find out the problem.
+                </p>
+                <code class="code-block">
+                    open /Applications/Utilities/Console.app ~/Library/javaftp/apache-ftpserver-1.1.1/res/log/ftpd.log
+                </code>
+
+            </section>
+
+            <section class="main-section" id="3.-_Test_your_Server_with_an_FTP_client">
+
+                <header>
+                    3.- Test your Server with an FTP client
+                </header>
+                <p>
+                    Try to connect with an FTP client like <a target="_blank" 
+                                                              href="https://filezilla-project.org/download.php">Filezilla</a>. 
+                </p>
+                <div>
+                    <h3>The pre-configurated connection data are:</h3>
+                    <ul>
+                        <li>User: javaftp</li>
+                        <li>Password: javaftp</li>
+                        <li>Port: 21</li>
+                        <li>Encryption: Plain FTP (See the Note below!)</li>
+                        <li>Home Folder: /Users/{your-user}/Desktop/FTP-JAVA</li>
+                    </ul>
+                </div>
+                <img src="img/ftp_data_connection.png" alt="The params for connecting to the server"/>
+                <p>
+                    Note: <span class="high-risk">Using Plain FTP it's a VERY HIGH RISK!!!</span> You should only 
+                    use it for tests purposes, and configure the FTP encryption for 
+                    production environments. For more information about how to config 
+                    the Apache FTP Server in a more secure way, see the sections 
+                    Listeners and TLS-SSL Support, at the <a target="_blank" href="https://mina.apache.org/ftpserver-project/documentation.html">
+                        project documentation</a>.
+                </p>
+
+            </section>
+
+            <section class="main-section" id="4.-_Changing_the_pre-configurated_user,_password,_home_folder,_etc">
+                <header>
+                    4.- Changing the pre-configurated user, password, home folder, etc
+                </header>
+                <p>
+                    You can change the user, password and the home folder through the next command:
+                </p>
+                <code class="code-block">
+                    nano ~/Library/javaftp/apache-ftpserver-1.1.1/res/conf/my-users.properties
+                </code>
+                <p>
+                    Change the "ftpuser" username to your-user-name, and your desired 
+                    Home Folder path. The password needs to be an MD5 hash, you can 
+                    generate this hash on any <a target="_blank" href="https://passwordsgenerator.net/md5-hash-generator">online generator</a>.
+                </p>
+                <img src="img/other-user-1.png" alt="User configuration changed in my-users.properties"/>
+            </section>
+
+            <section class="main-section" id="5.-_Adding_Users">
+                <header>
+                    5.- Adding Users
+                </header>
+                <p>
+                    Also, you can add new users with the command:
+                </p>
+                <code class="code-block">
+                    ~/Library/javaftp/addUser.sh
+                </code>
+                <img src="img/new-user.png" alt="Adding a new user"/>
+            </section>
+
+            <section class="main-section" id="6.-_Running_the_FTP_Server_on_login">
+                <header>
+                    6.- Running the FTP Server on login
+                </header>
+                <p>
+                    In the folder <code>~/Library/javaftp</code>, there is an app created with 
+                    Automator called startJFtp.app, this app contains the command 
+                    to start the FTP Server. 
+                </p>
+                <p>
+                    You only need to set up the app to be called when init your session. 
+                    To do this: open System Preferences, then Users & Groups, and there 
+                    select your user; in the Login Items tab, add the startJFtp.app which 
+                    you will find it in your-user folder, then Library (<a href="see-library.html" 
+                                                                           target="popup" onClick="MyWindow = window.open('see-library.html', 'Don\'t see the Library?', 'width=600,height=350'); return false;">Don't see the Library?</a>) 
+                    and finally the javaftp folder, add the app. 
+                </p>
+                <img src="img/add-start-ftp-app.png" alt="Adding the starFTP app"/>
+                <p>
+                    If you want check hide and it will 
+                    run silently. Reboot, and now your FTP Server starts on login.
+                </p>
+                <img src="img/start-ftp-added.png" alt="Server added to Login Items"/>
+            </section>
+            
+        </main>
+        <!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+    </body>
+</html>
